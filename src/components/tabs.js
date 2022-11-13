@@ -16,12 +16,14 @@ const Tabs = (topics) => {
 
   const topicsElem = document.createElement('div');
   topicsElem.classList.add('topics');
+
   topics.forEach((topic) => {
     const topicElem = document.createElement('div');
     topicElem.classList.add('tab');
     topicElem.textContent = topic;
     topicsElem.appendChild(topicElem);
   });
+  
   return topicsElem;
 
 }

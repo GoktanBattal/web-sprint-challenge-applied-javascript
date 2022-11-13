@@ -14,17 +14,22 @@ const Header = (title, date, temp) => {
 
   const headerElem = document.createElement('div');
   headerElem.classList.add('header');
+
   const dateElem = document.createElement('span');
   dateElem.classList.add('date');
   dateElem.textContent = date;
+
   const titleElem = document.createElement('h1');
   titleElem.textContent = title;
+
   const tempElem = document.createElement('span');
   tempElem.classList.add('temp');
   tempElem.textContent = temp;
+
   headerElem.appendChild(dateElem);
   headerElem.appendChild(titleElem);
   headerElem.appendChild(tempElem);
+  
   return headerElem;
 }
 

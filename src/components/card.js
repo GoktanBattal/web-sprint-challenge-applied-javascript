@@ -17,6 +17,42 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
+
+  const cardElem = document.createElement('div');
+  cardElem.classList.add('card');
+
+  const headlineElem =document.createElement('div');
+  headlineElem.classList.add('headline');
+  headlineElem.textContent = article.headline;
+
+  cardElem.appendChild(headlineElem);
+
+  const authorElem = document.createElement('div');
+  authorElem.classList.add('author');
+
+  const imgContainerElem = document.createElement('div');
+  imgContainerElem.classList.add('img-container');
+
+  const imgElem = document.createElement('img');
+  imgElem.setAttribute('src', article.authorPhoto);
+
+  imgContainerElem.appendChild(imgElem);
+
+  const authorNameElem = document.createElement('span');
+  authorNameElem.textContent = "By " + article.authorName;
+
+  authorElem.appendChild(imgContainerElem);
+  authorElem.appendChild(authorNameElem);
+
+  cardElem.appendChild(authorElem);
+
+  cardElem.addEventListener('click', () => {
+    console.log(artice.headline);
+  });
+  
+  return cardElem;
+
+
 }
 
 const cardAppender = (selector) => {
@@ -29,5 +65,14 @@ const cardAppender = (selector) => {
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
 }
+
+axios.get('http://localhost:5001/api/articles').then((response) =>{
+    let articles = Object.values(response.data.articles).flat();
+    articles = Object.values(articles)
+    const contentBody = document.querySelector(selector);
+    articles.map((article) => {
+      contentBody.appendChild(Card(article));
+    });
+  }).catch((error) => console.error(error));
 
 export { Card, cardAppender }
